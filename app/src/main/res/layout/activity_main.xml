@@ -1,55 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg3"
-
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
-    <LinearLayout
-        android:id="@+id/header"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="#42256B"
-        android:orientation="vertical">
+        android:layout_height="1dp"
+        android:background="@color/textColor"
+        app:layout_constraintBottom_toTopOf="@+id/viewselect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-        <TextView
-            android:id="@+id/showDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:paddingTop="7dp"
-            android:text="Sunday, 22 April, 2019"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/textColor"
+        app:layout_constraintBottom_toTopOf="@+id/maincalender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewselect" />
 
     <LinearLayout
         android:id="@+id/viewselect"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="#B71C1C"
-        android:orientation="horizontal">
+        android:backgroundTint="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/showSrollMonth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:background="@color/colorPrimary"
+            android:fontFamily="serif"
             android:paddingTop="7dp"
             android:text="April 2019"
             android:textAlignment="center"
-            android:textColor="#fff"
+            android:textColor="@color/textColor"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -85,14 +84,16 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/maincalender"
         android:layout_width="match_parent"
         android:layout_height="310dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="#ffe95451"
-        android:orientation="vertical">
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewselect">
 
         <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/compactcalendar_view"
@@ -103,38 +104,83 @@
             android:layout_marginRight="2dp"
             android:layout_marginBottom="2dp"
             android:paddingTop="10dp"
-            app:compactCalendarBackgroundColor="#ffe95451"
-            app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+            app:compactCalendarBackgroundColor="@color/colorPrimary"
+            app:compactCalendarCurrentDayBackgroundColor="@color/btnBgColors"
             app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
-            app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="#6eb7fa"
+            app:compactCalendarCurrentSelectedDayTextColor="#ffff"
             app:compactCalendarEventIndicatorStyle="fill_large_indicator"
-            app:compactCalendarMultiEventIndicatorColor="#fff"
+            app:compactCalendarMultiEventIndicatorColor="@color/linkColor"
+            app:compactCalendarOtherMonthDaysTextColor="#f2f2f2"
             app:compactCalendarTargetHeight="300dp"
-            app:compactCalendarTextColor="#fff"
+            app:compactCalendarTextColor="#f2f2f2"
             app:compactCalendarTextSize="20dp" />
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/bottom"
+    <RelativeLayout
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="#42256B"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNotesevents">
 
-
-        <TextView
-            android:id="@+id/eventtxt"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:text="No Holiday"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-    </LinearLayout>
-</LinearLayout>
+            tools:listitem="@layout/row_event" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardAdd"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        app:cardBackgroundColor="@color/textColor"
+        app:cardCornerRadius="25dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_baseline_add_24"
+            app:tint="@color/colorPrimary" />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnNotesevents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Notes"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maincalender" />
+
+    <Button
+        android:id="@+id/btnDiaryEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/btnBgColors"
+        android:text="Diary"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNotesevents"
+        app:layout_constraintStart_toEndOf="@+id/btnNotesevents"
+        app:layout_constraintTop_toTopOf="@+id/btnNotesevents"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

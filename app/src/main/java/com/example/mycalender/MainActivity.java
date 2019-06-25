@@ -1,195 +1,327 @@
 package com.example.mycalender;
 
-import android.app.DatePickerDialog;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.EventLog;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
-import android.widget.DatePicker;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-
+    DatabaseReference database = FirebaseDatabase.getInstance().getReference("notes");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("DiaryNotes");
     CompactCalendarView calendarView;
-    TextView textViewShowDate;
-    TextView textViewShowEvent;
     TextView showMonth;
+    Boolean status;
+    String dates;
+    Button btnNotes, btnDiary;
+    List<notes> event_dates, dated_events;
+    private RecyclerView recyclerView, recNoting;
+    noteAdapter adapter;
+    NotesAdapterr NoteAdapter;// Create Object of the Adapter class
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
 
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        getDates();
+        Initialize();
+        onClicks();
 
-        //Asigning variable
-        textViewShowDate= (TextView) findViewById(R.id.showDate);
-        calendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
-        textViewShowEvent= (TextView) findViewById(R.id.eventtxt);
-        showMonth= (TextView) findViewById(R.id.showSrollMonth);
+    }
 
-        //First Day of Week
-        calendarView.setFirstDayOfWeek(Calendar.SATURDAY);
-        calendarView.setUseThreeLetterAbbreviation(true);
-        calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
+//    public void getDates() {
+//        Query myMostViewedPostsQuery = database.orderByChild("date");
+//        myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+//                    notes university = postSnapshot.getValue(notes.class);
+//                    Event ev1 = new Event(Color.rgb(251, 179, 33), university.getDate(), "Language Martyr's Day");
+//                    calendarView.addEvent(ev1);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
-        //ActionBar
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle("Government Holiday");
-        //actionBar.setLogo(R.drawable.cocktail);
-        //actionBar.setDisplayUseLogoEnabled(true);
-        calendarView.displayOtherMonthDays(true);
+//    public void getEvents(Long data) {
+//        ArrayList<notes> it = new ArrayList<>();
+//        Query myMostViewedPostsQuery = database.orderByChild("date").equalTo(data);
+//        myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+//                    notes not = postSnapshot.getValue(notes.class);
+//                    Log.d("singleData", not + "");
+//                    it.add(not);
+//                }
+//                final Handler handler = new Handler(Looper.getMainLooper());
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Log.d("DiaryData", it + "");
+//                        recyclerView.setLayoutManager(
+//                                new LinearLayoutManager(getApplicationContext()));
+//                        adapter = new noteAdapter(getApplicationContext(), it);
+//                        // Connecting Adapter class with the Recycler view*/
+//                        recyclerView.setAdapter(adapter);
+//                    }
+//                }, 1000);
+//                Toast.makeText(MainActivity.this, "haha", Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
-        //Show Current Date
-        Calendar calendar = Calendar.getInstance();
-        final String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-        textViewShowDate.setText(currentDate);
+    public void getNotes(Long data) {
+        ArrayList<SimpleNotes> its = new ArrayList<>();
+        Query myMostViewedPostsQuery = root.orderByChild("date").equalTo(data);
+        myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    SimpleNotes not = postSnapshot.getValue(SimpleNotes.class);
+                    Log.d("singleNOte", not.getNote() + "");//YAHaN ZARA LOG LAGA KAR ITEMS DIKHAO LOGCAT MEN
+                    its.add(not);
+                }
+                /*final Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {*/
+                Log.d("ListNotesss", its.size() + "");// YE LOG CHECK KAR  O AA RHHA
+                recNoting.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                recNoting.setVisibility(View.VISIBLE);
+                NoteAdapter = new NotesAdapterr(getApplicationContext(), its);
+//                        // Connecting Adapter class with the Recycler view*/
+                recNoting.setAdapter(NoteAdapter);
+                Log.d("ListNotesItmes", NoteAdapter.getItemCount() + "");
+                /*    }
+                }, 1000);*/
+//                Toast.makeText(MainActivity.this, "haha", Toast.LENGTH_SHORT).show();
+            }
 
-        //Menu Button Month, Week, Day View
-        //ImageView monthView =(ImageView) findViewById(R.id.mothico);
-        //ImageView weekView = (ImageView) findViewById(R.id.weekico);
-        //ImageView dayView = (ImageView) findViewById(R.id.dayico);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        //Set Event and convert date by https://www.epochconverter.com/
-        Event ev1 = new Event(Color.rgb(2,105,40),1550685600000L,"Language Martyr's Day");
-        calendarView.addEvent(ev1);
-        Event ev2 = new Event(Color.rgb(2,105,40),1552759200000L,"Sheikh Mujibur Rahman's Birthday");
-        calendarView.addEvent(ev2);
-        Event ev3 = new Event(Color.rgb(2,105,40),1553536800000L,"Independence Day");
-        calendarView.addEvent(ev3);
-        Event ev4 = new Event(Color.rgb(2,105,40),1555178400000L,"Bengali New Year");
-        calendarView.addEvent(ev4);
-        Event ev5 = new Event(Color.rgb(2,105,40),1555783200000L,"Shab e-Barat");
-        calendarView.addEvent(ev5);
-        Event ev6 = new Event(Color.rgb(2,105,40),1556647200000L,"May Day");
-        calendarView.addEvent(ev6);
-        Event ev7 = new Event(Color.rgb(2,105,40),1558202400000L,"Buddha Purnima");
-        calendarView.addEvent(ev7);
-        Event ev8 = new Event(Color.rgb(2,105,40),1559239200000L,"Jumatul Bidah");
-        calendarView.addEvent(ev8);
-        Event ev9 = new Event(Color.rgb(2,105,40),1559325600000L,"Shab e-Kadar");
-        calendarView.addEvent(ev9);
-        Event ev10 = new Event(Color.rgb(2,105,40),1559671200000L,"Eid ul-Fitr");
-        calendarView.addEvent(ev10);
-        Event ev11 = new Event(Color.rgb(2,105,40),1559757600000L,"Eid ul-Fitr");
-        calendarView.addEvent(ev11);
-        Event ev12 = new Event(Color.rgb(2,105,40),1565546400000L,"Eid ul-Adha");
-        calendarView.addEvent(ev12);
-        Event ev13 = new Event(Color.rgb(2,105,40),1565632800000L,"Eid ul-Adha");
-        calendarView.addEvent(ev13);
-        Event ev14 = new Event(Color.rgb(2,105,40),1565719200000L,"Eid ul-Adha");
-        calendarView.addEvent(ev14);
-        Event ev15 = new Event(Color.rgb(2,105,40),1565805600000L,"National Mourning Day");
-        calendarView.addEvent(ev15);
-        Event ev16 = new Event(Color.rgb(2,105,40),1566583200000L,"Janmashtami");
-        calendarView.addEvent(ev16);
-        Event ev17 = new Event(Color.rgb(2,105,40),1568052000000L,"Ashura");
-        calendarView.addEvent(ev17);
-        Event ev18 = new Event(Color.rgb(2,105,40),1570471200000L,"Durga Puja");
-        calendarView.addEvent(ev18);
-        Event ev19 = new Event(Color.rgb(2,105,40),1573322400000L,"EId e-Milad-un Nabi");
-        calendarView.addEvent(ev19);
-        Event ev20 = new Event(Color.rgb(2,105,40),1576432800000L,"Victory Day");
-        calendarView.addEvent(ev20);
-        Event ev21 = new Event(Color.rgb(2,105,40),1577210400000L,"Christmas Day");
-        calendarView.addEvent(ev21);
+            }
+        });
+    }
 
+    public void showHide() {
+        Log.d("staates", status + "");
+        if (status) {
+            btnNotes.setBackgroundColor(getResources().getColor(R.color.btnBgColors));
+            btnNotes.setTextColor(getResources().getColor(R.color.white));
+            btnDiary.setBackgroundColor(getResources().getColor(R.color.white));
+            btnDiary.setTextColor(getResources().getColor(R.color.black));
+            recNoting.setVisibility(View.VISIBLE);
+            Log.d("status", "hide recdialry");
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            btnDiary.setBackgroundColor(getResources().getColor(R.color.btnBgColors));
+            btnDiary.setTextColor(getResources().getColor(R.color.white));
+            btnNotes.setBackgroundColor(getResources().getColor(R.color.white));
+            btnNotes.setTextColor(getResources().getColor(R.color.black));
+            recNoting.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            Log.d("status", "hide notes");
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        System.exit(0);
+
+    }
+
+    public void onClicks() {
+        btnNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                status = true;
+                showHide();
+                getNotes(Long.parseLong(dates));
+            }
+        });
+        btnDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                status = false;
+                showHide();
+                getEvents(Long.parseLong(dates));
+            }
+        });
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-
-                //Log.d(dateClicked.toString(),"hi");
-
-                if (dateClicked.toString().compareTo("Thu Feb 21 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Language Martyr's Day");
-                }
-                else if (dateClicked.toString().compareTo("Sun Mar 17 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Sheikh Mujibur Rahman's Birthday");
-                }
-                else if (dateClicked.toString().compareTo("Tue Mar 26 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Independence Day");
-                }
-                else if (dateClicked.toString().compareTo("Sun Apr 14 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Bengali New Year");
-                }
-                else if (dateClicked.toString().compareTo("Sun Apr 21 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Shab e-Barat");
-                }
-                else if (dateClicked.toString().compareTo("Wed May 01 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("May day");
-                }
-                else if (dateClicked.toString().compareTo("Sun May 19 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Buddha Purnima");
-                }
-                else if (dateClicked.toString().compareTo("Fri May 31 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Jumatul Bidah");
-                }
-                else if (dateClicked.toString().compareTo("Sat Jun 01 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Shab e-Kadar");
-                }
-                else if (dateClicked.toString().compareTo("Wed Jun 05 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Eid ul-Fitr");
-                }
-                else if (dateClicked.toString().compareTo("Thu Jun 06 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Eid ul-Fitr");
-                }
-                else if (dateClicked.toString().compareTo("Mon Aug 12 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Eid ul-Adha");
-                }
-                else if (dateClicked.toString().compareTo("Tue Aug 13 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Eid ul-Adha");
-                }
-                else if (dateClicked.toString().compareTo("Wed Aug 14 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Eid ul-Adha");
-                }
-                else if (dateClicked.toString().compareTo("Thu Aug 15 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("National Mourning Day");
-                }
-                else if (dateClicked.toString().compareTo("Sat Aug 24 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Janmashtami");
-                }
-                else if (dateClicked.toString().compareTo("Tue Sep 10 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Ashura");
-                }
-                else if (dateClicked.toString().compareTo("Tue Oct 08 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Durga Puja");
-                }
-                else if (dateClicked.toString().compareTo("Sun Nov 10 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("EId e-Milad-un Nabi");
-                }
-                else if (dateClicked.toString().compareTo("Mon Dec 16 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Victory Day");
-                }
-                else if (dateClicked.toString().compareTo("Wed Dec 25 00:00:00 GMT+06:00 2019") == 0) {
-                    textViewShowEvent.setText("Christmas Day");
-                }
-                else{
-                        textViewShowEvent.setText("No Holiday");
-                    }
-                }
+                dates = dateClicked.getTime() + "";
+                getEvents(dateClicked.getTime());
+                getNotes(dateClicked.getTime());
+                showHide();
+            }
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 showMonth.setText(dateFormatMonth.format(firstDayOfNewMonth));
             }
         });
-
+        findViewById(R.id.cardAdd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, NoteOptionActivity.class);
+                i.putExtra("Date", dates);
+                startActivity(i);
+            }
+        });
     }
 
+    public void Initialize() {
+        status = true;
+        dated_events = new ArrayList<>();
+        recyclerView = findViewById(R.id.rec);
+        recNoting = findViewById(R.id.recNotes);
+        dates = System.currentTimeMillis() + "";
+        btnDiary = findViewById(R.id.btnDiaryEvents);
+        btnNotes = findViewById(R.id.btnNotesevents);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DATE, Calendar.DATE);
+
+        event_dates = new ArrayList<>();
+
+        showHide();
+        //Asigning variable
+        calendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+        showMonth = (TextView) findViewById(R.id.showSrollMonth);
+        //First Day of Week
+        calendarView.setFirstDayOfWeek(Calendar.SATURDAY);
+        calendarView.setUseThreeLetterAbbreviation(true);
+        calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
+        calendarView.displayOtherMonthDays(true);
+
+        final int callbackId = 42;
+        checkPermissions(callbackId, Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR);
+        readCalendarEvent(getApplicationContext());
+        showMonth.setText(dateFormatMonth.format(new Date(calendar.getTimeInMillis())));
+        getEvents(calendar.getTimeInMillis());
+        getNotes(calendar.getTimeInMillis());
+    }
+
+    private void checkPermissions(int callbackId, String... permissionsId) {
+        boolean permissions = true;
+        for (String p : permissionsId) {
+            permissions = permissions && ContextCompat.checkSelfPermission(this, p) == PERMISSION_GRANTED;
+        }
+
+        if (!permissions)
+            ActivityCompat.requestPermissions(this, permissionsId, callbackId);
+    }
+
+    public void readCalendarEvent(Context context) {
+
+        ContentResolver contentResolver = context.getContentResolver();
+        Cursor cursor = contentResolver.query(Uri.parse("content://com.android.calendar/events"), (new String[]{"_id", "title", "organizer", "dtstart", "dtend"}), null, null, null);
+
+        List<notes> gCalendar = new ArrayList<notes>();
+        try {
+
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    notes googleCalendar = new notes();
+                    // event_ID: ID of tabel Event
+//                    int event_ID = cursor.getInt(0);
+//                    googleCalendar.setEvent_id(event_ID);
+                    // title of Event
+                    String title = cursor.getString(1);
+                    googleCalendar.setNote(title);
+                    String mOrganizer = cursor.getString(2);
+                    //  googleCalendar.setOrganizer(mOrganizer);
+                    // Date start of Event
+                    String dtStart = cursor.getString(3);
+                    googleCalendar.setDate(Long.parseLong(dtStart));
+                    Event ev1 = new Event(Color.rgb(251, 179, 33), Long.parseLong(dtStart), "Language Martyr's Day");
+                    calendarView.addEvent(ev1);
+                    //    Log.d("StartDate",new Date(dtStart).getDay()+"");
+//                    googleCalendar.setDate(dtStart);
+//                    // Date end of Event
+//                    String dtEnd = cursor.getString(4);
+//                    googleCalendar.setDtend(dtEnd);
+                    gCalendar.add(googleCalendar);
+
+                    Log.d("CaledarM", googleCalendar.getNote() + "date=" + googleCalendar.getDate());
+
+                }
+                event_dates = gCalendar;
+            }
+        } catch (AssertionError ex) {
+            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getEvents(Long d) {
+        // Creating date from milliseconds
+        // using Date() constructor
+        Date result = new Date(d);
+        Log.d("Dating", d + "");
+        List<notes> finalDate = new ArrayList<>();
+        for (notes it : event_dates) {
+            Date resutl2 = new Date(it.getDate());
+            if (resutl2.getDate() == result.getDate()) {
+                finalDate.add(it);
+            }
+        }
+        Log.d("timing", finalDate + "" + d);
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(getApplicationContext()));
+        adapter = new noteAdapter(getApplicationContext(), finalDate);
+        // Connecting Adapter class with the Recycler view*/
+        recyclerView.setAdapter(adapter);
+    }
 }
