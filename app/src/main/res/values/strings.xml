@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Government Holiday</string>
+    <string name="app_name">Minds Window </string>
     <integer-array name="androidcolors">
         <item>@color/yellow</item>
         <item>@color/purple</item>
