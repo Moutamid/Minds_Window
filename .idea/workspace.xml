@@ -6,8 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="NotesAdapter" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -15,8 +14,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="757579b5-6a7f-4782-bf71-b807c74d1458" name="Default Changelist" comment="Update readme file">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_browser_browser_1_4_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_18_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_api_phone_17_4_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_base_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_safetynet_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_21_0_7_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/LoginActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_circle_svgrepo_com.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_event_svgrepo_com.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/dongle_bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/dongle_light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/dongle_regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/fonts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_19_0_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.androidTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.androidTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.unitTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.unitTest.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/NotesAdapterr.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/NotesAdapterr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/ShowNotesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/ShowNotesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/noteAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalender/noteAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_image_svgrepo_com.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_image_svgrepo_com.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_calender_note.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_calender_note.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_notes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_notes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_notes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_notes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_note_option.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_note_option.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_notes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_notes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +73,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -49,10 +93,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="Kotlin Data Class" />
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -76,6 +120,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -134,6 +181,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ResourceManagerPrefKey.ResourceType" value="FONT" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewC:/Users/BASHIR/background_window/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
@@ -141,21 +189,24 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="device.picker.selection" value="GAYLWKTWHENBW8MF" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="project.structure.last.edited" value="SDK Location" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="experimental" />
     <property name="show.do.not.ask.upgrade.gradle.plugin" value="3.3.1" />
     <property name="sync.plugin.last.upgrade.timestamp" value="1554290497285" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app" />
+      <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\font" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\drawable" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender" />
-      <recent name="G:\Workspace\Android\Calender\My Calender\app\src\main\res\drawable" />
-      <recent name="G:\Workspace\Android\Calender\My Calender\app\src\main\res\values" />
+    </key>
+    <key name="android.template.-698250165">
+      <recent name="com.example.mycalender" />
     </key>
     <key name="android.template.1751403755">
       <recent name="com.example.mycalender" />
@@ -167,7 +218,13 @@
       <recent name="com.example.mycalender" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle siginingReport" />
+      <command value="gradle signingReport" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
@@ -231,6 +288,54 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Holiday-Event-Calender [siginingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="siginingReport" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Holiday-Event-Calender [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="signingReport" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Holiday-Event-Calender [signingReport]" />
+        <item itemvalue="Gradle.Holiday-Event-Calender [siginingReport]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -265,7 +370,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662127502742</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update readme file">
+      <created>1662149202884</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1662149202884</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/newBg"
     tools:context=".AllNotesActivity">
 
     <androidx.cardview.widget.CardView
@@ -30,12 +30,13 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="serif"
+        android:fontFamily="@font/dongle_regular"
         android:padding="10dp"
+
         android:text="ALL Notes"
         android:textAllCaps="true"
-        android:textColor="@color/textColor"
-        android:textSize="30sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_35ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/recAllNotes"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +49,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_50sdp"
         android:orientation="horizontal"
+        tools:listitem="@layout/row_notes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

@@ -64,9 +64,10 @@ public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holde
         SimpleNotes currentItem = users.get(position);
         int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
-//        holder.MainCard.setCardBackgroundColor(randomAndroidColor);
+     //   holder.MainCard.setCardBackgroundColor(randomAndroidColor);
         holder.title.setText(users.get(position).getNote());
 //        holder.date.setText(users.get(position).getDate());
+        holder.img.setImageResource(R.drawable.ic_circle_svgrepo_com);
 
     }
 
@@ -78,15 +79,16 @@ public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holde
 
     class View_Holder extends RecyclerView.ViewHolder {
         TextView title, date;
-        ImageView speaker;
-        CardView cardView, MainCard;
+        ImageView img;
+        CardView cardView;
 
 
         public View_Holder(@NonNull View itemView, final NotesAdapterr.OnitemClickListener listener) {
             super(itemView);
             //here we are initializing our components that were in the roww_all_views
             title = (TextView) itemView.findViewById(R.id.tvWord);
-            MainCard = itemView.findViewById(R.id.cardViews);
+            img = itemView.findViewById(R.id.imageView3);
+//            cardView=itemVie
 //            date = itemView.findViewById(R.id.tvDate);
 
         }

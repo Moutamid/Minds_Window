@@ -24,6 +24,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+import java.util.Random;
 
 //adapter is a class which we used to show list of data for example this adapter is used to show all the compaings in the project
 public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.View_Holder> {
@@ -51,7 +52,7 @@ public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.View
         this.layoutInflater = LayoutInflater.from(ctx);
         this.users = users;
         context = ctx;
-        Log.d(TAG, users+"");
+        Log.d(TAG, users + "");
 
     }
 
@@ -64,12 +65,11 @@ public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull View_Holder holder, int position) {
-//        int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
-//        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
-//        holder.cardView.setBackgroundColor(randomAndroidColor);
+        int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
         String urls = null;
         holder.title.setText(users.get(position).getNote());//here we are defining our data what we have to show it is coming from tha api
-
+        holder.img.setImageResource(R.drawable.ic_circle_svgrepo_com);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.View
             super(itemView);
             //here we are initializing our components that were in the roww_all_views
             title = (TextView) itemView.findViewById(R.id.tvWord);
-//            img = itemView.findViewById(R.id.imgToDo);
+            img = itemView.findViewById(R.id.imageView3);
 
         }
     }

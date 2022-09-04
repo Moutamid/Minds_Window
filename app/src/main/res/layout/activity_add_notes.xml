@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/newBg"
     android:layout_height="match_parent"
     tools:context=".AddCalenderNote">
 
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        app:cardBackgroundColor="@color/cardBg"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="15dp"
         android:layout_marginTop="@dimen/_50sdp"
         app:cardElevation="12dp"
@@ -30,7 +30,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:textColorHint="@color/textColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +48,6 @@
                     android:scrollbars="vertical"
                     android:scrollHorizontally="false"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/textColor"
                     android:textColorHint="@color/textColor" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -75,12 +73,13 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="serif"
+        android:fontFamily="@font/dongle_bold"
         android:padding="10dp"
         android:text="Add Note"
+
         android:textAllCaps="true"
-        android:textColor="@color/textColor"
-        android:textSize="30sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_35ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="parent"

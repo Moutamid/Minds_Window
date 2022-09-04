@@ -26,6 +26,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     List<notes> event_dates, dated_events;
     private RecyclerView recyclerView, recNoting;
     noteAdapter adapter;
+    FirebaseAuth firebaseAuth;
+    GoogleSignInClient googleSignInClient;
     NotesAdapterr NoteAdapter;// Create Object of the Adapter class
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
 
@@ -135,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {*/
                 Log.d("ListNotesss", its.size() + "");// YE LOG CHECK KAR  O AA RHHA
                 recNoting.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                recNoting.setVisibility(View.VISIBLE);
+//                recNoting.setVisibility(View.VISIBLE);
                 NoteAdapter = new NotesAdapterr(getApplicationContext(), its);
 //                        // Connecting Adapter class with the Recycler view*/
                 recNoting.setAdapter(NoteAdapter);
@@ -155,18 +162,18 @@ public class MainActivity extends AppCompatActivity {
     public void showHide() {
         Log.d("staates", status + "");
         if (status) {
-            btnNotes.setBackgroundColor(getResources().getColor(R.color.btnBgColors));
+            btnNotes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnNotes.setTextColor(getResources().getColor(R.color.white));
             btnDiary.setBackgroundColor(getResources().getColor(R.color.white));
-            btnDiary.setTextColor(getResources().getColor(R.color.black));
+            btnDiary.setTextColor(getResources().getColor(R.color.colorPrimary));
             recNoting.setVisibility(View.VISIBLE);
             Log.d("status", "hide recdialry");
             recyclerView.setVisibility(View.GONE);
         } else {
-            btnDiary.setBackgroundColor(getResources().getColor(R.color.btnBgColors));
+            btnDiary.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnDiary.setTextColor(getResources().getColor(R.color.white));
             btnNotes.setBackgroundColor(getResources().getColor(R.color.white));
-            btnNotes.setTextColor(getResources().getColor(R.color.black));
+            btnNotes.setTextColor(getResources().getColor(R.color.colorPrimary));
             recNoting.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
             Log.d("status", "hide notes");
@@ -223,6 +230,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void Initialize() {
         status = true;
+        // Initialize firebase auth
+        firebaseAuth=FirebaseAuth.getInstance();
+
+        // Initialize firebase user
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        if(firebaseUser!=null)
+        {
+
+            Utils.toast(getApplicationContext(),firebaseUser.getDisplayName());
+
+        }
+
+        // Initialize sign in client
+        googleSignInClient= GoogleSignIn.getClient(MainActivity.this
+                , GoogleSignInOptions.DEFAULT_SIGN_IN);
         dated_events = new ArrayList<>();
         recyclerView = findViewById(R.id.rec);
         recNoting = findViewById(R.id.recNotes);
@@ -237,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         showHide();
         //Asigning variable
         calendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
-        showMonth = (TextView) findViewById(R.id.showSrollMonth);
+        showMonth = (TextView) findViewById(R.id.viewselect);
         //First Day of Week
         calendarView.setFirstDayOfWeek(Calendar.SATURDAY);
         calendarView.setUseThreeLetterAbbreviation(true);
@@ -284,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
                     // Date start of Event
                     String dtStart = cursor.getString(3);
                     googleCalendar.setDate(Long.parseLong(dtStart));
-                    Event ev1 = new Event(Color.rgb(251, 179, 33), Long.parseLong(dtStart), "Language Martyr's Day");
+                    Event ev1 = new Event(Color.rgb(217, 217, 217), Long.parseLong(dtStart), "Language Martyr's Day");
                     calendarView.addEvent(ev1);
                     //    Log.d("StartDate",new Date(dtStart).getDay()+"");
 //                    googleCalendar.setDate(dtStart);

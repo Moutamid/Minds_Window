@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3a3d5e</color>
+    <color name="colorPrimary">#6247cc</color>
+
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FEFDFD</color>
     <color name="black">#2a6bb0</color>
     <color name="yellow">#FFEB3B</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#ffffff</color>
     <color name="lightWhite">#f2f5f8</color>
     <color name="purple">#e203e2</color>
     <color name="linkColor">#47c8f8</color>
@@ -15,6 +16,10 @@
     <color name="btnBgColors">#5ccb9a</color>
     <color name="textColor">#fcfcfd</color>
     <color name="cardBg">#404674</color>
+    <color name="newBg">#f1f1f1</color>
+    <color name="calenderTextColor">#9c9c9c</color>
+
+
 
 
 </resources>

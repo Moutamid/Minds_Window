@@ -5,6 +5,7 @@ import static com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC;
 
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,13 +68,21 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
 //        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
 //        holder.cardView.setBackgroundColor(randomAndroidColor);
         String urls = null;
-        holder.title.setText(users.get(position).getNote());//here we are defining our data what we have to show it is coming from tha api
+        holder.title.setText(users.get(position).getNote());
+        //here we are defining our data what we have to show it is coming from tha api
         Query myMostViewedPostsQuery = database.orderByChild("date").equalTo(users.get(position).getDate());
+        holder.img.setImageResource(R.drawable.monthico);
         myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     notes not = postSnapshot.getValue(notes.class);
+                    Log.d("imageUrl",not.getImgUrl()+"");
+                    if(not.getImgUrl()==null){
+
+                        break;
+                    }
+
                     if (not.getImgUrl() != null) {
                         Glide.with(context)
                                 .asBitmap()
@@ -82,13 +91,6 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
                                 )
                                 .diskCacheStrategy(AUTOMATIC)
                                 .into(holder.img);
-                    }else{
-
-                            Glide.with(context)
-                                    .asBitmap()
-                                    .load(context.getResources().getString(R.string.defualtUrl))
-                                    .diskCacheStrategy(AUTOMATIC)
-                                    .into(holder.img);
 
                     }
                     break;
