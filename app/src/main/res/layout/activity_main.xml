@@ -132,6 +132,10 @@
             android:id="@+id/recNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recToDo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 
@@ -170,13 +174,25 @@
         android:id="@+id/btnDiaryEvents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
         android:backgroundTint="@color/colorPrimary"
         android:text="Diary"
         app:layout_constraintBottom_toBottomOf="@+id/btnNotesevents"
         app:layout_constraintStart_toEndOf="@+id/btnNotesevents"
         app:layout_constraintTop_toTopOf="@+id/btnNotesevents"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnToDose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Do"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDiaryEvents"
+        app:layout_constraintStart_toEndOf="@+id/btnDiaryEvents"
+        app:layout_constraintTop_toTopOf="@+id/btnDiaryEvents" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -329,6 +329,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "890062472575-04eao8dtrd79brdept34sgepohr88878.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moutamid.randomchat",
+            "certificate_hash": "36500dc906b213ac808e68286a6109234180858e"
+          }
+        },
+        {
           "client_id": "890062472575-hoqbm9vifsv8qnef68iknqqs7ldtqlps.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

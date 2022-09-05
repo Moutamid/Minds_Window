@@ -1,7 +1,6 @@
 package com.moutamid.mycalender;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,8 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.moutamid.mycalender.databinding.ActivityAddNotesBinding;
 
-public class SIMPLENOTESADDACTIVITY extends AppCompatActivity {
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("SimpleNotess");
+public class AddToDoActivity extends AppCompatActivity {
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference(Constants.ToDo);
     String Date;
     ActivityAddNotesBinding binding;
     FirebaseAuth firebaseAuth;
@@ -26,6 +25,8 @@ public class SIMPLENOTESADDACTIVITY extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddNotesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Bundle b = getIntent().getExtras();
+        Date = b.getString("Date", "null");
         firebaseAuth=FirebaseAuth.getInstance();
         binding.uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +35,7 @@ public class SIMPLENOTESADDACTIVITY extends AppCompatActivity {
                 SimpleNotes data = new SimpleNotes();
                 data.id = root.push().getKey();
                 data.note = binding.EtNote.getText().toString();
-                data.date = System.currentTimeMillis();
+                data.date = Long.parseLong(Date);
                 if(firebaseUser!=null)
                 {
                     data.uid=firebaseUser.getUid();
@@ -44,9 +45,9 @@ public class SIMPLENOTESADDACTIVITY extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(SIMPLENOTESADDACTIVITY.this, "Added Succesfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddToDoActivity.this, "Added Succesfully", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(SIMPLENOTESADDACTIVITY.this, "bad", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddToDoActivity.this, "bad", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -34,6 +34,14 @@ String Date;
                 startActivity(i);
             }
         });
+        binding.btnToDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NoteOptionActivity.this, AddToDoActivity.class);
+                i.putExtra("Date", Date);
+                startActivity(i);
+            }
+        });
         binding.btnNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

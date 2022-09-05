@@ -4,17 +4,15 @@
       <root url="jar://$PROJECT_DIR$/../background_window/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/jetified-android-gif-drawable-1.2.25/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../background_window/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/jetified-android-gif-drawable-1.2.25/res" />
       <root url="file://$PROJECT_DIR$/../background_window/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/jetified-android-gif-drawable-1.2.25/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/android-gif-drawable-1.2.25/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/android-gif-drawable-1.2.25/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/android-gif-drawable-1.2.25/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/android-gif-drawable-1.2.25/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/android-gif-drawable-1.2.25/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-3/bb6ef5fd362577ea1b1f6022014fb686/transformed/android-gif-drawable-1.2.25/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../background_window/caches/modules-2/files-2.1/pl.droidsonroids.gif/android-gif-drawable/1.2.25/f047794870ff2d5fb04e80c9967708c0061df14c/android-gif-drawable-1.2.25-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/pl.droidsonroids.gif/android-gif-drawable/1.2.25/f047794870ff2d5fb04e80c9967708c0061df14c/android-gif-drawable-1.2.25-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../background_window/caches/modules-2/files-2.1/pl.droidsonroids.gif/android-gif-drawable/1.2.25/c70d6e55e3ca16d39e6839aacff88a8b0ab86eef/android-gif-drawable-1.2.25-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/pl.droidsonroids.gif/android-gif-drawable/1.2.25/c70d6e55e3ca16d39e6839aacff88a8b0ab86eef/android-gif-drawable-1.2.25-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

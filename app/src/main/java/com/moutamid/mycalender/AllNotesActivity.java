@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,13 +26,19 @@ import java.util.ArrayList;
 public class AllNotesActivity extends AppCompatActivity {
     ActivityAllNotesBinding binding;
     NotesAdapterr adapter;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("SimpleNotes");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("SimpleNotess");
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAllNotesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        firebaseAuth=FirebaseAuth.getInstance();
+
+        // Initialize firebase user
+
+
         binding.cardAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +50,7 @@ public class AllNotesActivity extends AppCompatActivity {
     }
 
     public void getData() {
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
         ArrayList<SimpleNotes> it = new ArrayList<>();
         it.clear();
         Query myMostViewedPostsQuery = root.orderByChild("date");
@@ -50,10 +59,16 @@ public class AllNotesActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 it.clear();
+
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SimpleNotes not = postSnapshot.getValue(SimpleNotes.class);
-                    Log.d("singleData", not + "");
-                    it.add(not);
+                    if(firebaseUser!=null&&not.getUid()!=null)
+                    {
+                       if(not.getUid().equals(firebaseUser.getUid())){
+                           it.add(not);
+                       }
+
+                    }
                 }
                 final Handler handler = new Handler(Looper.getMainLooper());
                 handler.postDelayed(new Runnable() {

@@ -46,17 +46,18 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseReference database = FirebaseDatabase.getInstance().getReference("notes");
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("DiaryNotes");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference(Constants.DiaryNotes);
+    private DatabaseReference ToDoDb = FirebaseDatabase.getInstance().getReference(Constants.ToDo);
     CompactCalendarView calendarView;
     TextView showMonth;
-    Boolean status;
+    int status;
     String dates;
-    Button btnNotes, btnDiary;
+    Button btnNotes, btnDiary, btnToDo;
     List<notes> event_dates, dated_events;
-    private RecyclerView recyclerView, recNoting;
+    private RecyclerView recyclerView, recNoting, recToTo;
     noteAdapter adapter;
     FirebaseAuth firebaseAuth;
+    ToDoAdapter toDoAdapter;
     GoogleSignInClient googleSignInClient;
     NotesAdapterr NoteAdapter;// Create Object of the Adapter class
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
@@ -66,64 +67,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        getDates();
         Initialize();
         onClicks();
 
     }
 
-//    public void getDates() {
-//        Query myMostViewedPostsQuery = database.orderByChild("date");
-//        myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-//                    notes university = postSnapshot.getValue(notes.class);
-//                    Event ev1 = new Event(Color.rgb(251, 179, 33), university.getDate(), "Language Martyr's Day");
-//                    calendarView.addEvent(ev1);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
+    public void getToDo(Long data) {
+        ArrayList<SimpleNotes> its = new ArrayList<>();
+        Query myMostViewedPostsQuery = ToDoDb.orderByChild("date").equalTo(data);
+        myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    SimpleNotes not = postSnapshot.getValue(SimpleNotes.class);
+                    Log.d("T0DoNode", not.getNote() + "haha");
+                    if (firebaseAuth.getUid().equals(not.getUid())) {
+                        its.add(not);
+                    }
+                }
+                recToTo.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                toDoAdapter = new ToDoAdapter(getApplicationContext(), its);
+                recToTo.setAdapter(toDoAdapter);
 
-//    public void getEvents(Long data) {
-//        ArrayList<notes> it = new ArrayList<>();
-//        Query myMostViewedPostsQuery = database.orderByChild("date").equalTo(data);
-//        myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-//                    notes not = postSnapshot.getValue(notes.class);
-//                    Log.d("singleData", not + "");
-//                    it.add(not);
-//                }
-//                final Handler handler = new Handler(Looper.getMainLooper());
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Log.d("DiaryData", it + "");
-//                        recyclerView.setLayoutManager(
-//                                new LinearLayoutManager(getApplicationContext()));
-//                        adapter = new noteAdapter(getApplicationContext(), it);
-//                        // Connecting Adapter class with the Recycler view*/
-//                        recyclerView.setAdapter(adapter);
-//                    }
-//                }, 1000);
-//                Toast.makeText(MainActivity.this, "haha", Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     public void getNotes(Long data) {
         ArrayList<SimpleNotes> its = new ArrayList<>();
@@ -133,23 +107,17 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SimpleNotes not = postSnapshot.getValue(SimpleNotes.class);
-                    Log.d("singleNOte", not.getNote() + "");//YAHaN ZARA LOG LAGA KAR ITEMS DIKHAO LOGCAT MEN
-                    its.add(not);
+
+                    if (firebaseAuth.getUid().equals(not.getUid())) {
+                        its.add(not);
+                    }
+
                 }
-                /*final Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {*/
-                Log.d("ListNotesss", its.size() + "");// YE LOG CHECK KAR  O AA RHHA
                 recNoting.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//                recNoting.setVisibility(View.VISIBLE);
                 NoteAdapter = new NotesAdapterr(getApplicationContext(), its);
-//                        // Connecting Adapter class with the Recycler view*/
                 recNoting.setAdapter(NoteAdapter);
                 Log.d("ListNotesItmes", NoteAdapter.getItemCount() + "");
-                /*    }
-                }, 1000);*/
-//                Toast.makeText(MainActivity.this, "haha", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -161,22 +129,40 @@ public class MainActivity extends AppCompatActivity {
 
     public void showHide() {
         Log.d("staates", status + "");
-        if (status) {
+        if (status==1) {
             btnNotes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnNotes.setTextColor(getResources().getColor(R.color.white));
             btnDiary.setBackgroundColor(getResources().getColor(R.color.white));
             btnDiary.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnToDo.setBackgroundColor(getResources().getColor(R.color.white));
+            btnToDo.setTextColor(getResources().getColor(R.color.colorPrimary));
             recNoting.setVisibility(View.VISIBLE);
             Log.d("status", "hide recdialry");
             recyclerView.setVisibility(View.GONE);
-        } else {
+            recToTo.setVisibility(View.GONE);
+        }
+        if(status==2) {
             btnDiary.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnDiary.setTextColor(getResources().getColor(R.color.white));
             btnNotes.setBackgroundColor(getResources().getColor(R.color.white));
             btnNotes.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnToDo.setBackgroundColor(getResources().getColor(R.color.white));
+            btnToDo.setTextColor(getResources().getColor(R.color.colorPrimary));
             recNoting.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
+            recToTo.setVisibility(View.GONE);
             Log.d("status", "hide notes");
+        }
+        if(status==3){
+            btnToDo.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnToDo.setTextColor(getResources().getColor(R.color.white));
+            btnNotes.setBackgroundColor(getResources().getColor(R.color.white));
+            btnNotes.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnDiary.setBackgroundColor(getResources().getColor(R.color.white));
+            btnDiary.setTextColor(getResources().getColor(R.color.colorPrimary));
+            recNoting.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
+            recToTo.setVisibility(View.VISIBLE);
         }
     }
 
@@ -191,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         btnNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                status = true;
+                status = 1;
                 showHide();
                 getNotes(Long.parseLong(dates));
             }
@@ -199,9 +185,17 @@ public class MainActivity extends AppCompatActivity {
         btnDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                status = false;
+                status = 2;
                 showHide();
                 getEvents(Long.parseLong(dates));
+            }
+        });
+        btnToDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                status=3;
+                showHide();
+                getToDo(Long.parseLong(dates));
             }
         });
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
@@ -210,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 dates = dateClicked.getTime() + "";
                 getEvents(dateClicked.getTime());
                 getNotes(dateClicked.getTime());
+                getToDo(dateClicked.getTime());
                 showHide();
             }
 
@@ -229,24 +224,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Initialize() {
-        status = true;
+        status = 1;
         // Initialize firebase auth
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         // Initialize firebase user
-        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
-        if(firebaseUser!=null)
-        {
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
 
-            Utils.toast(getApplicationContext(),firebaseUser.getDisplayName());
+            Utils.toast(getApplicationContext(), firebaseUser.getDisplayName());
 
         }
 
         // Initialize sign in client
-        googleSignInClient= GoogleSignIn.getClient(MainActivity.this
+        googleSignInClient = GoogleSignIn.getClient(MainActivity.this
                 , GoogleSignInOptions.DEFAULT_SIGN_IN);
         dated_events = new ArrayList<>();
         recyclerView = findViewById(R.id.rec);
+        btnToDo = findViewById(R.id.btnToDose);
+        recToTo = findViewById(R.id.recToDo);
         recNoting = findViewById(R.id.recNotes);
         dates = System.currentTimeMillis() + "";
         btnDiary = findViewById(R.id.btnDiaryEvents);
@@ -272,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
         showMonth.setText(dateFormatMonth.format(new Date(calendar.getTimeInMillis())));
         getEvents(calendar.getTimeInMillis());
         getNotes(calendar.getTimeInMillis());
+        getToDo(calendar.getTimeInMillis());
     }
 
     private void checkPermissions(int callbackId, String... permissionsId) {
