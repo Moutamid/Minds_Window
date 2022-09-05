@@ -44,6 +44,7 @@ public class SIMPLENOTESADDACTIVITY extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            binding.EtNote.setText("");
                             Toast.makeText(SIMPLENOTESADDACTIVITY.this, "Added Succesfully", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(SIMPLENOTESADDACTIVITY.this, "bad", Toast.LENGTH_SHORT).show();

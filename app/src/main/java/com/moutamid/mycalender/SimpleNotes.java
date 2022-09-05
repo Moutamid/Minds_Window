@@ -36,6 +36,16 @@ public class SimpleNotes {
         return uid;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    Boolean status;
+
     public void setUid(String uid) {
         this.uid = uid;
     }

@@ -78,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
         myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                its.clear();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+
                     SimpleNotes not = postSnapshot.getValue(SimpleNotes.class);
                     Log.d("T0DoNode", not.getNote() + "haha");
                     if (firebaseAuth.getUid().equals(not.getUid())) {
@@ -305,6 +307,7 @@ public class MainActivity extends AppCompatActivity {
                     googleCalendar.setDate(Long.parseLong(dtStart));
                     Event ev1 = new Event(Color.rgb(217, 217, 217), Long.parseLong(dtStart), "Language Martyr's Day");
                     calendarView.addEvent(ev1);
+
                     //    Log.d("StartDate",new Date(dtStart).getDay()+"");
 //                    googleCalendar.setDate(dtStart);
 //                    // Date end of Event

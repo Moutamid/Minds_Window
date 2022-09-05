@@ -48,6 +48,7 @@ public class AddNotes extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            binding.EtNote.setText("");
                             Toast.makeText(AddNotes.this, "Added Succesfully", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(AddNotes.this, MainActivity.class));
                             finish();

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 import java.util.Random;
@@ -25,9 +31,9 @@ import java.util.Random;
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
     private static final String TAG = "NotesAdapter";
     private ToDoAdapter.OnitemClickListener mListener;
+    private DatabaseReference ToDoDb = FirebaseDatabase.getInstance().getReference(Constants.ToDo);
     Context context;
     TextToSpeech textToSpeech;
-    DatabaseReference database = FirebaseDatabase.getInstance().getReference("notes");
 
     public interface OnitemClickListener {
         void OnItemClick(int position);//
@@ -64,10 +70,24 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
         SimpleNotes currentItem = users.get(position);
         int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
-     //   holder.MainCard.setCardBackgroundColor(randomAndroidColor);
+        //   holder.MainCard.setCardBackgroundColor(randomAndroidColor);
         holder.title.setText(users.get(position).getNote());
+        Boolean state = false;
+        if (currentItem.getStatus() == null) {
+            state = false;
+        } else {
+            state = currentItem.getStatus();
+        }
+        holder.chk.setChecked(state);
+        holder.chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            ToDoDb.child(currentItem.getId()).child("status").setValue(b);
+
+            }
+        });
 //        holder.date.setText(users.get(position).getDate());
-    //    holder.img.setImageResource(R.drawable.ic_circle_svgrepo_com);
+        //    holder.img.setImageResource(R.drawable.ic_circle_svgrepo_com);
 
     }
 
@@ -79,13 +99,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
 
     class View_Holder extends RecyclerView.ViewHolder {
         TextView title;
-
+        CheckBox chk;
 
         public View_Holder(@NonNull View itemView, final ToDoAdapter.OnitemClickListener listener) {
             super(itemView);
             //here we are initializing our components that were in the roww_all_views
             title = (TextView) itemView.findViewById(R.id.toDoTitle);
-       //     img = itemView.findViewById(R.id.imageView3);
+            chk = itemView.findViewById(R.id.chkBox);
+            //     img = itemView.findViewById(R.id.imageView3);
 //            cardView=itemVie
 //            date = itemView.findViewById(R.id.tvDate);
 

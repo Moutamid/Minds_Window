@@ -36,6 +36,7 @@ public class AddToDoActivity extends AppCompatActivity {
                 data.id = root.push().getKey();
                 data.note = binding.EtNote.getText().toString();
                 data.date = Long.parseLong(Date);
+                data.status=false;
                 if(firebaseUser!=null)
                 {
                     data.uid=firebaseUser.getUid();
@@ -45,6 +46,7 @@ public class AddToDoActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            binding.EtNote.setText("");
                             Toast.makeText(AddToDoActivity.this, "Added Succesfully", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(AddToDoActivity.this, "bad", Toast.LENGTH_SHORT).show();
