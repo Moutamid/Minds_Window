@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mycalender">
+    package="com.moutamid.mycalender">
 
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
@@ -15,25 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.moutamid.mycalender.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SIMPLENOTESADDACTIVITY"
+            android:name="com.moutamid.mycalender.SIMPLENOTESADDACTIVITY"
             android:exported="false" />
         <activity
-            android:name=".AllNotesActivity"
+            android:name="com.moutamid.mycalender.AllNotesActivity"
             android:exported="false" />
         <activity
-            android:name=".NoteOptionActivity"
+            android:name="com.moutamid.mycalender.NoteOptionActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNotes"
+            android:name="com.moutamid.mycalender.AddNotes"
             android:exported="false" />
         <activity
-            android:name=".AddCalenderNote"
+            android:name="com.moutamid.mycalender.AddCalenderNote"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.moutamid.mycalender.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

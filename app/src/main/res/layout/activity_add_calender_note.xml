@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/newBg"
-    tools:context=".AddCalenderNote">
+    tools:context="com.moutamid.mycalender.AddCalenderNote">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
