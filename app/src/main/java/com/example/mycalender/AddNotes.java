@@ -19,7 +19,6 @@ public class AddNotes extends AppCompatActivity {
     String Date;
     ActivityAddNotesBinding binding;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +26,7 @@ public class AddNotes extends AppCompatActivity {
         setContentView(binding.getRoot());
         Bundle b = getIntent().getExtras();
         Date = b.getString("Date", "null");
+
         binding.uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
