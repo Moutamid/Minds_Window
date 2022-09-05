@@ -4,6 +4,9 @@
       <root url="jar://$PROJECT_DIR$/../background_window/caches/transforms-3/c893df1e12cae2ecba6d5c22b3a8d5f3/transformed/jetified-ssp-android-1.0.6/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../background_window/caches/transforms-3/c893df1e12cae2ecba6d5c22b3a8d5f3/transformed/jetified-ssp-android-1.0.6/res" />
       <root url="file://$PROJECT_DIR$/../background_window/caches/transforms-3/c893df1e12cae2ecba6d5c22b3a8d5f3/transformed/jetified-ssp-android-1.0.6/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c893df1e12cae2ecba6d5c22b3a8d5f3/transformed/ssp-android-1.0.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c893df1e12cae2ecba6d5c22b3a8d5f3/transformed/ssp-android-1.0.6/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c893df1e12cae2ecba6d5c22b3a8d5f3/transformed/ssp-android-1.0.6/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

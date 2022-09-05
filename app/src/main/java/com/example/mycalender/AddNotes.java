@@ -1,13 +1,8 @@
 package com.example.mycalender;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,17 +14,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Calendar;
-
 public class AddNotes extends AppCompatActivity {
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference("DiaryNotes");
     String Date;
- ActivityAddNotesBinding binding;
+    ActivityAddNotesBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityAddNotesBinding.inflate(getLayoutInflater());
+        binding = ActivityAddNotesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Bundle b = getIntent().getExtras();
         Date = b.getString("Date", "null");
@@ -45,7 +39,7 @@ public class AddNotes extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(AddNotes.this, "Added Succesfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AddNotes.this,MainActivity.class));
+                            startActivity(new Intent(AddNotes.this, MainActivity.class));
                             finish();
                         } else {
                             Toast.makeText(AddNotes.this, "Something went wrong", Toast.LENGTH_SHORT).show();

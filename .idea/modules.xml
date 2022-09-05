@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Holiday-Event-Calender.iml" filepath="$PROJECT_DIR$/.idea/modules/Holiday-Event-Calender.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Minds_Window.iml" filepath="$PROJECT_DIR$/.idea/modules/Minds_Window.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Minds_Window.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Minds_Window.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Minds_Window.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Minds_Window.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Minds_Window.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Minds_Window.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Minds_Window.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Minds_Window.app.unitTest.iml" />
     </modules>
   </component>
 </project>
