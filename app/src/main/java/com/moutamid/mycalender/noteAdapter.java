@@ -33,9 +33,9 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
     DatabaseReference database = FirebaseDatabase.getInstance().getReference("notes");
 
     public interface OnitemClickListener {
-        void OnItemClick(int position);//
+        void onEditClick(int position);//
 
-        void onaddclick(int position);
+        void onDeleteClick(int position);
 
     }
 
@@ -101,7 +101,8 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
 
             }
         });
-
+        holder.imgEdit.setImageResource(R.drawable.ic_baseline_edit_24);
+        holder.imgDelete.setImageResource(R.drawable.ic_baseline_delete_24);
 
     }
 
@@ -112,7 +113,7 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
 
     class View_Holder extends RecyclerView.ViewHolder {
         TextView title;
-        ImageView img;
+        ImageView img, imgEdit, imgDelete;
 
 
         public View_Holder(@NonNull View itemView, final noteAdapter.OnitemClickListener listener) {
@@ -120,6 +121,30 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
             //here we are initializing our components that were in the roww_all_views
             title = (TextView) itemView.findViewById(R.id.tvToDo);
             img = itemView.findViewById(R.id.imgToDo);
+            imgEdit = itemView.findViewById(R.id.event_edit);
+            imgDelete = itemView.findViewById(R.id.event_delete);
+            imgEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onEditClick(position);
+                        }
+                    }
+                }
+            });
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
 
         }
     }

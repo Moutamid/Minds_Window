@@ -17,6 +17,8 @@
     <color name="textColor">#fcfcfd</color>
     <color name="cardBg">#404674</color>
     <color name="newBg">#f1f1f1</color>
+    <color name="editColor">#f1f1f1</color>
+    <color name="blue">#0AB6F6</color>
     <color name="calenderTextColor">#9c9c9c</color>
 
 

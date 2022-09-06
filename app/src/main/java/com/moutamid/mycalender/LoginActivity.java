@@ -1,8 +1,11 @@
 package com.moutamid.mycalender;
 
 
+import static com.moutamid.mycalender.Constants.MY_PREFS_NAME;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,6 +64,9 @@ public class LoginActivity extends AppCompatActivity {
         btSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putBoolean("state",true);
+                editor.apply();
                 signIn();
 
             }

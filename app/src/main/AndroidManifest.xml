@@ -15,28 +15,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.moutamid.mycalender.AddToDoActivity"
+            android:name=".SettingActivity"
             android:exported="false" />
         <activity
-            android:name="com.moutamid.mycalender.MainActivity"
+            android:name=".AddToDoActivity"
             android:exported="false" />
         <activity
-            android:name="com.moutamid.mycalender.SIMPLENOTESADDACTIVITY"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.moutamid.mycalender.AllNotesActivity"
+            android:name=".SIMPLENOTESADDACTIVITY"
             android:exported="false" />
         <activity
-            android:name="com.moutamid.mycalender.NoteOptionActivity"
+            android:name=".AllNotesActivity"
             android:exported="false" />
         <activity
-            android:name="com.moutamid.mycalender.AddNotes"
+            android:name=".NoteOptionActivity"
             android:exported="false" />
         <activity
-            android:name="com.moutamid.mycalender.AddCalenderNote"
+            android:name=".AddNotes"
             android:exported="false" />
         <activity
-            android:name="com.moutamid.mycalender.LoginActivity"
+            android:name=".AddCalenderNote"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

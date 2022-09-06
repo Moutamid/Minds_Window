@@ -6,11 +6,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +30,8 @@ import java.util.ArrayList;
 public class AllNotesActivity extends AppCompatActivity {
     ActivityAllNotesBinding binding;
     NotesAdapterr adapter;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("SimpleNotess");
+    ArrayList<SimpleNotes> it = new ArrayList<>();
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference(Constants.SimpleNotes);
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -47,11 +52,12 @@ public class AllNotesActivity extends AppCompatActivity {
             }
         });
         getData();
+
+
     }
 
     public void getData() {
         FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
-        ArrayList<SimpleNotes> it = new ArrayList<>();
         it.clear();
         Query myMostViewedPostsQuery = root.orderByChild("date");
 
@@ -77,9 +83,22 @@ public class AllNotesActivity extends AppCompatActivity {
                         Log.d("datasss", it + "");
                         binding.recAllNotes.setLayoutManager(
                                 new LinearLayoutManager(getApplicationContext()));
-                        adapter = new NotesAdapterr(getApplicationContext(), it);
+                        adapter = new NotesAdapterr(AllNotesActivity.this, it);
                         // Connecting Adapter class with the Recycler view*/
                         binding.recAllNotes.setAdapter(adapter);
+                        adapter.setOnItemClick(new NotesAdapterr.OnitemClickListener() {
+                            @Override
+                            public void onEditClick(int position) {
+                                showBottomSheetDialog(it.get(position).getId());
+                            }
+
+                            @Override
+                            public void onDeleteClick(int position) {
+                                root.child(it.get(position).getId()).removeValue();
+                                it.remove(position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
                     }
                 }, 1000);
 
@@ -90,5 +109,30 @@ public class AllNotesActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void showBottomSheetDialog(String key) {
+
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(AllNotesActivity.this);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_edit);
+        EditText text = bottomSheetDialog.findViewById(R.id.editText);
+        Button add = bottomSheetDialog.findViewById(R.id.btnDone);
+
+        TextView title = bottomSheetDialog.findViewById(R.id.tvEditDiary);
+        bottomSheetDialog.show();
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Utils.isEmpty(text)) {
+                    Utils.toast(getApplicationContext(), "please add note");
+                } else {
+                    root.child(key).child("note").setValue(text.getText().toString());
+                    Utils.toast(getApplicationContext(),"Updated Succesfully");
+                    bottomSheetDialog.hide();
+                }
+            }
+        });
+        title.setText("Edit Note");
+
+
     }
 }

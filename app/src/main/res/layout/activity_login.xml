@@ -3,16 +3,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/newBg"
     android:layout_height="match_parent"
     tools:context="com.moutamid.mycalender.LoginActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dongle_bold"
+        android:padding="10dp"
+        android:text="@string/welcome"
+
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_35ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imgWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.432" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/imgWord"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_20ssp"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/welcome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/bt_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgWord" />
 </androidx.constraintlayout.widget.ConstraintLayout>

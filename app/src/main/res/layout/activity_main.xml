@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginHorizontal="@dimen/_10sdp"
@@ -193,6 +194,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/btnDiaryEvents"
         app:layout_constraintStart_toEndOf="@+id/btnDiaryEvents"
         app:layout_constraintTop_toTopOf="@+id/btnDiaryEvents" />
+
+    <ImageView
+        android:id="@+id/imgSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/viewselect"
+        app:layout_constraintStart_toStartOf="@+id/maincalender"
+        app:layout_constraintTop_toTopOf="@+id/viewselect"
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

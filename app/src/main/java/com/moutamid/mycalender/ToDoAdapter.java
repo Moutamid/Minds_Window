@@ -2,6 +2,7 @@ package com.moutamid.mycalender;
 
 
 import android.content.Context;
+import android.media.Image;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,9 +37,10 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
     TextToSpeech textToSpeech;
 
     public interface OnitemClickListener {
-        void OnItemClick(int position);//
+        void onEditClick(int position);//
 
-        void onaddclick(int position);
+        void onDeleteClick(int position);
+        void onCheckClick(int position);
 
     }
 
@@ -82,10 +84,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
         holder.chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            ToDoDb.child(currentItem.getId()).child("status").setValue(b);
+                ToDoDb.child(currentItem.getId()).child("status").setValue(b);
 
             }
         });
+        holder.imgEdit.setImageResource(R.drawable.ic_baseline_edit_24);
+        holder.imgDelete.setImageResource(R.drawable.ic_baseline_delete_24);
+
 //        holder.date.setText(users.get(position).getDate());
         //    holder.img.setImageResource(R.drawable.ic_circle_svgrepo_com);
 
@@ -100,6 +105,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
     class View_Holder extends RecyclerView.ViewHolder {
         TextView title;
         CheckBox chk;
+        ImageView img, imgEdit, imgDelete;
 
         public View_Holder(@NonNull View itemView, final ToDoAdapter.OnitemClickListener listener) {
             super(itemView);
@@ -109,6 +115,31 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
             //     img = itemView.findViewById(R.id.imageView3);
 //            cardView=itemVie
 //            date = itemView.findViewById(R.id.tvDate);
+            imgEdit = itemView.findViewById(R.id.toDoEdit);
+            imgDelete = itemView.findViewById(R.id.toDoDelete);
+            imgEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onEditClick(position);
+                        }
+                    }
+                }
+            });
+
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
 
         }
     }

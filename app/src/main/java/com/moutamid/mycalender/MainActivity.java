@@ -2,23 +2,33 @@ package com.moutamid.mycalender;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
+import static com.moutamid.mycalender.Constants.MY_PREFS_NAME;
+
 import android.Manifest;
+import android.app.UiModeManager;
 import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +39,7 @@ import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -67,10 +78,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+       // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         Initialize();
         onClicks();
 
     }
+
 
     public void getToDo(Long data) {
         ArrayList<SimpleNotes> its = new ArrayList<>();
@@ -87,11 +100,27 @@ public class MainActivity extends AppCompatActivity {
                         its.add(not);
                     }
                 }
-                recToTo.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                toDoAdapter = new ToDoAdapter(getApplicationContext(), its);
+                recToTo.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                toDoAdapter = new ToDoAdapter(MainActivity.this, its);
                 recToTo.setAdapter(toDoAdapter);
+                toDoAdapter.setOnItemClick(new ToDoAdapter.OnitemClickListener() {
+                    @Override
+                    public void onEditClick(int position) {
+                        showBottomSheetDialog(its.get(position).getId(),2);
+                    }
 
+                    @Override
+                    public void onDeleteClick(int position) {
+                        ToDoDb.child(its.get(position).getId()).removeValue();
+                        its.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
 
+                    @Override
+                    public void onCheckClick(int position) {
+
+                    }
+                });
             }
 
             @Override
@@ -115,9 +144,22 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
-                recNoting.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                NoteAdapter = new NotesAdapterr(getApplicationContext(), its);
+                recNoting.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                NoteAdapter = new NotesAdapterr(MainActivity.this, its);
                 recNoting.setAdapter(NoteAdapter);
+                NoteAdapter.setOnItemClick(new NotesAdapterr.OnitemClickListener() {
+                    @Override
+                    public void onEditClick(int position) {
+                        showBottomSheetDialog(its.get(position).getId(),1);
+                    }
+
+                    @Override
+                    public void onDeleteClick(int position) {
+                        root.child(its.get(position).getId()).removeValue();
+                        its.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
                 Log.d("ListNotesItmes", NoteAdapter.getItemCount() + "");
 
             }
@@ -223,6 +265,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        findViewById(R.id.imgSetting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void Initialize() {
@@ -234,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null) {
 
-            Utils.toast(getApplicationContext(), firebaseUser.getDisplayName());
+            Utils.toast(MainActivity.this, firebaseUser.getDisplayName());
 
         }
 
@@ -266,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
 
         final int callbackId = 42;
         checkPermissions(callbackId, Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR);
-        readCalendarEvent(getApplicationContext());
+        readCalendarEvent(MainActivity.this);
         showMonth.setText(dateFormatMonth.format(new Date(calendar.getTimeInMillis())));
         getEvents(calendar.getTimeInMillis());
         getNotes(calendar.getTimeInMillis());
@@ -284,10 +333,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void readCalendarEvent(Context context) {
-
-        ContentResolver contentResolver = context.getContentResolver();
-        Cursor cursor = contentResolver.query(Uri.parse("content://com.android.calendar/events"), (new String[]{"_id", "title", "organizer", "dtstart", "dtend"}), null, null, null);
-
+        Cursor cursor = getContentResolver().query(Uri.parse("content://com.android.calendar/events"),
+                (new String[]{"_id", "title","description","dtstart"}), "deleted = ?", new String[]{"0"}, null);
         List<notes> gCalendar = new ArrayList<notes>();
         try {
 
@@ -295,8 +342,8 @@ public class MainActivity extends AppCompatActivity {
                 while (cursor.moveToNext()) {
                     notes googleCalendar = new notes();
                     // event_ID: ID of tabel Event
-//                    int event_ID = cursor.getInt(0);
-//                    googleCalendar.setEvent_id(event_ID);
+                    int event_ID = cursor.getInt(0);
+                    googleCalendar.setcId(event_ID);
                     // title of Event
                     String title = cursor.getString(1);
                     googleCalendar.setNote(title);
@@ -341,9 +388,85 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d("timing", finalDate + "" + d);
         recyclerView.setLayoutManager(
-                new LinearLayoutManager(getApplicationContext()));
-        adapter = new noteAdapter(getApplicationContext(), finalDate);
+                new LinearLayoutManager(MainActivity.this));
+        adapter = new noteAdapter(MainActivity.this, finalDate);
         // Connecting Adapter class with the Recycler view*/
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClick(new noteAdapter.OnitemClickListener() {
+            @Override
+            public void onEditClick(int position) {
+                ContentResolver cr = getContentResolver();
+                ContentValues values = new ContentValues();
+                values.put(CalendarContract.Events.TITLE, "Kickboxing");
+                Uri updateUri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, event_dates.get(position).getcId());
+                int rows = getContentResolver().update(updateUri, values, null, null);
+                Log.i("Calendar", "Rows updated: " + rows);
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                Uri CALENDAR_URI = Uri.parse("content://com.android.calendar/events");
+                Uri uri = ContentUris.withAppendedId(CALENDAR_URI, event_dates.get(position).getcId());
+                getContentResolver().delete(uri, null, null);
+                Utils.toast(MainActivity.this,"Deleted");
+                readCalendarEvent(MainActivity.this);
+            }
+        });
     }
+    private void showBottomSheetDialog(String key,int type) {
+
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MainActivity.this);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_edit);
+        EditText text = bottomSheetDialog.findViewById(R.id.editText);
+        Button add = bottomSheetDialog.findViewById(R.id.btnDone);
+
+        TextView title = bottomSheetDialog.findViewById(R.id.tvEditDiary);
+        bottomSheetDialog.show();
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Utils.isEmpty(text)) {
+                    Utils.toast(MainActivity.this, "please add note");
+                } else {
+                    if(type==1) {
+                        root.child(key).child("note").setValue(text.getText().toString());
+                    }
+                    if(type==2){
+                        ToDoDb.child(key).child("note").setValue(text.getText().toString());
+                    }
+                    Utils.toast(MainActivity.this,"Updated Succesfully");
+                    bottomSheetDialog.hide();
+                }
+            }
+        });
+        title.setText("Edit Note");
+
+
+    }
+    @Override
+    protected void onStart()
+    {
+        SharedPreferences editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        if(editor.getBoolean("state",true)){
+            AppCompatDelegate
+                    .setDefaultNightMode(
+                            AppCompatDelegate
+                                    .MODE_NIGHT_YES);
+        }
+        else{
+            AppCompatDelegate
+                    .setDefaultNightMode(
+                            AppCompatDelegate
+                                    .MODE_NIGHT_NO);
+        }
+        super.onStart();
+    }
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+    }
+
+
 }

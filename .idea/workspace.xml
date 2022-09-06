@@ -6,30 +6,49 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="T0DoNode" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="757579b5-6a7f-4782-bf71-b807c74d1458" name="Default Changelist" comment="9/4/2022">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/latestupload.gif" afterDir="false" />
+    <list default="true" id="757579b5-6a7f-4782-bf71-b807c74d1458" name="Default Changelist" comment="9/7/2022">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/SettingActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/bg_edittext_light.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/dialog_bg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/horizental_rect.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/horizontal_line_long.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_delete_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_edit_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_settings_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/welcome.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/bottom_sheet_edit.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Holiday-Event-Calender.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddNotes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddNotes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddToDoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddToDoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AllNotesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AllNotesActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/SIMPLENOTESADDACTIVITY.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/SIMPLENOTESADDACTIVITY.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/SimpleNotes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/SimpleNotes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/NotesAdapterr.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/NotesAdapterr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/ToDoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/ToDoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/cocktail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_calender_note.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_calender_note.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/noteAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/noteAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/notes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/notes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_note_option.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_note_option.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_notes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_notes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_to_do.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_to_do.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +91,8 @@
       <list>
         <option value="Kotlin Data Class" />
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -187,9 +206,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\drawable" />
+      <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\font" />
-      <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender" />
     </key>
     <key name="android.template.-698250165">
@@ -199,6 +218,9 @@
       <recent name="com.example.mycalender" />
     </key>
     <key name="android.template.2146082055">
+      <recent name="com.moutamid.mycalender" />
+    </key>
+    <key name="android.template.1426528625">
       <recent name="com.moutamid.mycalender" />
     </key>
     <key name="android.template.1921116338">
@@ -388,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662387127732</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="9/4/2022">
+      <created>1662410235655</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662410235655</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -438,7 +467,8 @@
     </ignored-roots>
     <MESSAGE value="Update readme file" />
     <MESSAGE value="9/4/2022" />
-    <option name="LAST_COMMIT_MESSAGE" value="9/4/2022" />
+    <MESSAGE value="9/7/2022" />
+    <option name="LAST_COMMIT_MESSAGE" value="9/7/2022" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

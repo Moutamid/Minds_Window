@@ -49,6 +49,26 @@
                 app:layout_constraintTop_toTopOf="@+id/toDoTitle"
                 app:srcCompat="@drawable/ic_circle_svgrepo_com" />
 
+            <ImageView
+                android:id="@+id/toDoEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toDoTitle"
+                app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+            <ImageView
+                android:id="@+id/toDoDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/toDoEdit"
+                app:layout_constraintEnd_toStartOf="@+id/toDoEdit"
+                app:layout_constraintTop_toTopOf="@+id/toDoEdit"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

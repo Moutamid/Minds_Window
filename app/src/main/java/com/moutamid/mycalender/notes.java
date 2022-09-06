@@ -32,6 +32,16 @@ public class notes {
     String note;
     String imgUrl;
 
+    public int getcId() {
+        return cId;
+    }
+
+    public void setcId(int cId) {
+        this.cId = cId;
+    }
+
+    int cId;
+
     public Long getDate() {
         return date;
     }

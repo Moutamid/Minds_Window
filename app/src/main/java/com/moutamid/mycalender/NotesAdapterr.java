@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
- 
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,15 +29,16 @@ import java.util.Random;
 //adapter is a class which we used to show list of data for example this adapter is used to show all the compaings in the project
 public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holder> {
     private static final String TAG = "NotesAdapter";
+    private DatabaseReference Note = FirebaseDatabase.getInstance().getReference(Constants.SimpleNotes);
     private NotesAdapterr.OnitemClickListener mListener;
     Context context;
     TextToSpeech textToSpeech;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference("notes");
 
     public interface OnitemClickListener {
-        void OnItemClick(int position);//
+        void onEditClick(int position);//
 
-        void onaddclick(int position);
+        void onDeleteClick(int position);
 
     }
 
@@ -65,10 +70,13 @@ public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holde
         SimpleNotes currentItem = users.get(position);
         int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
-     //   holder.MainCard.setCardBackgroundColor(randomAndroidColor);
+        //   holder.MainCard.setCardBackgroundColor(randomAndroidColor);
         holder.title.setText(users.get(position).getNote());
 //        holder.date.setText(users.get(position).getDate());
         holder.img.setImageResource(R.drawable.ic_circle_svgrepo_com);
+        holder.imgEdit.setImageResource(R.drawable.ic_baseline_edit_24);
+        holder.imgDelete.setImageResource(R.drawable.ic_baseline_delete_24);
+
 
     }
 
@@ -80,7 +88,7 @@ public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holde
 
     class View_Holder extends RecyclerView.ViewHolder {
         TextView title, date;
-        ImageView img;
+        ImageView img, imgEdit, imgDelete;
         CardView cardView;
 
 
@@ -89,11 +97,36 @@ public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holde
             //here we are initializing our components that were in the roww_all_views
             title = (TextView) itemView.findViewById(R.id.tvWord);
             img = itemView.findViewById(R.id.imageView3);
-//            cardView=itemVie
-//            date = itemView.findViewById(R.id.tvDate);
+            imgEdit = itemView.findViewById(R.id.imgEdit);
+            imgDelete = itemView.findViewById(R.id.imgDelete);
+            imgEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onEditClick(position);
+                        }
+                    }
+                }
+            });
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
+
 
         }
     }
+
+
 }
 
 

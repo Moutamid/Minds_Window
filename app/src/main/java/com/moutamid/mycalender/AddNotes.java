@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.moutamid.mycalender.databinding.ActivityAddNotesBinding;
 
 public class AddNotes extends AppCompatActivity {
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("DiaryNotess");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference(Constants.DiaryNotes);
     String Date;
     ActivityAddNotesBinding binding;
     FirebaseAuth firebaseAuth;
