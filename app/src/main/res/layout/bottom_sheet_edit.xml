@@ -27,23 +27,11 @@
         android:layout_marginTop="@dimen/_18sdp"
         android:fontFamily="@font/dongle_bold"
         android:text="Edit Diary"
-        android:textColor="@color/blue"
+        android:textColor="@color/text"
         android:textSize="@dimen/_27ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_line" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_2sdp"
-        android:layout_marginStart="@dimen/_18sdp"
-        android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginEnd="@dimen/_18sdp"
-        android:background="@drawable/horizontal_line_long"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEditDiary" />
 
 
     <EditText
@@ -51,9 +39,11 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp"
         android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:background="@drawable/bg_edittext_light"
         android:gravity="top"
+        android:textColor="@color/text"
         android:hint="Enter note"
         android:inputType="text"
         android:paddingStart="@dimen/_20sdp"
@@ -63,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEditDiary" />
 
     <Button
         android:id="@+id/btnDone"
@@ -71,10 +61,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:text="Done"
-
+        android:layout_marginTop="@dimen/_10sdp"
+        android:backgroundTint="@color/text"
+        android:text="@string/done"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

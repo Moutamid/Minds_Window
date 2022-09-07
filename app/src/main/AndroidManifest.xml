@@ -15,6 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AllData"
+            android:exported="false"
+            android:label="@string/title_activity_all_data"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".SettingActivity"
             android:exported="false" />
         <activity

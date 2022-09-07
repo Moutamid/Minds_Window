@@ -26,7 +26,7 @@
                 android:layout_width="@dimen/_3sdp"
                 android:layout_height="0dp"
                 android:layout_margin="@dimen/_2sdp"
-                android:background="@color/colorPrimary"
+                android:background="@color/text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
                 app:fontFamily="@font/dongle_regular"
                 android:fontFamily="serif"
                 android:text="afa fa faf afjakj"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/text"
                 android:textSize="@dimen/_18ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/cardView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,6 +83,16 @@
                 app:layout_constraintTop_toTopOf="@+id/event_edit"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+            <TextView
+                android:id="@+id/event_date"
+                android:textColor="@color/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/tvToDo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

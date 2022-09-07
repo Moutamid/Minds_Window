@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 recToTo.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                toDoAdapter = new ToDoAdapter(MainActivity.this, its);
+                toDoAdapter = new ToDoAdapter(MainActivity.this, its,false);
                 recToTo.setAdapter(toDoAdapter);
                 toDoAdapter.setOnItemClick(new ToDoAdapter.OnitemClickListener() {
                     @Override
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onDeleteClick(int position) {
                         ToDoDb.child(its.get(position).getId()).removeValue();
                         its.remove(position);
-                        adapter.notifyDataSetChanged();
+                        toDoAdapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 recNoting.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                NoteAdapter = new NotesAdapterr(MainActivity.this, its);
+                NoteAdapter = new NotesAdapterr(MainActivity.this, its,false);
                 recNoting.setAdapter(NoteAdapter);
                 NoteAdapter.setOnItemClick(new NotesAdapterr.OnitemClickListener() {
                     @Override
@@ -174,36 +174,36 @@ public class MainActivity extends AppCompatActivity {
     public void showHide() {
         Log.d("staates", status + "");
         if (status==1) {
-            btnNotes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnNotes.setBackgroundColor(getResources().getColor(R.color.text));
             btnNotes.setTextColor(getResources().getColor(R.color.white));
             btnDiary.setBackgroundColor(getResources().getColor(R.color.white));
-            btnDiary.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnDiary.setTextColor(getResources().getColor(R.color.text));
             btnToDo.setBackgroundColor(getResources().getColor(R.color.white));
-            btnToDo.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnToDo.setTextColor(getResources().getColor(R.color.text));
             recNoting.setVisibility(View.VISIBLE);
             Log.d("status", "hide recdialry");
             recyclerView.setVisibility(View.GONE);
             recToTo.setVisibility(View.GONE);
         }
         if(status==2) {
-            btnDiary.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnDiary.setBackgroundColor(getResources().getColor(R.color.text));
             btnDiary.setTextColor(getResources().getColor(R.color.white));
             btnNotes.setBackgroundColor(getResources().getColor(R.color.white));
-            btnNotes.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnNotes.setTextColor(getResources().getColor(R.color.text));
             btnToDo.setBackgroundColor(getResources().getColor(R.color.white));
-            btnToDo.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnToDo.setTextColor(getResources().getColor(R.color.text));
             recNoting.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
             recToTo.setVisibility(View.GONE);
             Log.d("status", "hide notes");
         }
         if(status==3){
-            btnToDo.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnToDo.setBackgroundColor(getResources().getColor(R.color.text));
             btnToDo.setTextColor(getResources().getColor(R.color.white));
             btnNotes.setBackgroundColor(getResources().getColor(R.color.white));
-            btnNotes.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnNotes.setTextColor(getResources().getColor(R.color.text));
             btnDiary.setBackgroundColor(getResources().getColor(R.color.white));
-            btnDiary.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btnDiary.setTextColor(getResources().getColor(R.color.text));
             recNoting.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
             recToTo.setVisibility(View.VISIBLE);
@@ -389,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("timing", finalDate + "" + d);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(MainActivity.this));
-        adapter = new noteAdapter(MainActivity.this, finalDate);
+        adapter = new noteAdapter(MainActivity.this, finalDate,false);
         // Connecting Adapter class with the Recycler view*/
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClick(new noteAdapter.OnitemClickListener() {

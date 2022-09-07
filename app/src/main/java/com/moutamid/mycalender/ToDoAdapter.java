@@ -24,7 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 
@@ -34,6 +36,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
     private ToDoAdapter.OnitemClickListener mListener;
     private DatabaseReference ToDoDb = FirebaseDatabase.getInstance().getReference(Constants.ToDo);
     Context context;
+    Boolean states=false;
     TextToSpeech textToSpeech;
 
     public interface OnitemClickListener {
@@ -52,10 +55,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
     List<SimpleNotes> users;
 
 
-    public ToDoAdapter(Context ctx, List<SimpleNotes> users) {
+    public ToDoAdapter(Context ctx, List<SimpleNotes> users,Boolean state) {
         this.layoutInflater = LayoutInflater.from(ctx);
         this.users = users;
         context = ctx;
+        this.states=state;
 
     }
 
@@ -90,7 +94,15 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
         });
         holder.imgEdit.setImageResource(R.drawable.ic_baseline_edit_24);
         holder.imgDelete.setImageResource(R.drawable.ic_baseline_delete_24);
+        if(states){
+            holder.date.setVisibility(View.VISIBLE);
+            SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+            holder.date.setText(dateFormatMonth.format(users.get(position).getDate()));
 
+        }
+        else{
+            holder.date.setVisibility(View.GONE);
+        }
 //        holder.date.setText(users.get(position).getDate());
         //    holder.img.setImageResource(R.drawable.ic_circle_svgrepo_com);
 
@@ -103,7 +115,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
     }
 
     class View_Holder extends RecyclerView.ViewHolder {
-        TextView title;
+        TextView title,date;
         CheckBox chk;
         ImageView img, imgEdit, imgDelete;
 
@@ -112,6 +124,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.View_Holder> {
             //here we are initializing our components that were in the roww_all_views
             title = (TextView) itemView.findViewById(R.id.toDoTitle);
             chk = itemView.findViewById(R.id.chkBox);
+            date=itemView.findViewById(R.id.tvToDoDate);
             //     img = itemView.findViewById(R.id.imageView3);
 //            cardView=itemVie
 //            date = itemView.findViewById(R.id.tvDate);

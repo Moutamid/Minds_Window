@@ -24,12 +24,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 //adapter is a class which we used to show list of data for example this adapter is used to show all the compaings in the project
 public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
     private noteAdapter.OnitemClickListener mListener;
     Context context;
+   Boolean state=false;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference("notes");
 
     public interface OnitemClickListener {
@@ -47,10 +50,11 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
     List<notes> users;
 
 
-    public noteAdapter(Context ctx, List<notes> users) {
+    public noteAdapter(Context ctx, List<notes> users,Boolean state) {
         this.layoutInflater = LayoutInflater.from(ctx);
         this.users = users;
         context = ctx;
+        this.state=state;
 
     }
 
@@ -71,6 +75,15 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
         //here we are defining our data what we have to show it is coming from tha api
         Query myMostViewedPostsQuery = database.orderByChild("date").equalTo(users.get(position).getDate());
         holder.img.setImageResource(R.drawable.monthico);
+        if(state){
+            holder.date.setVisibility(View.VISIBLE);
+            SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+            holder.date.setText(dateFormatMonth.format(users.get(position).getDate()));
+
+        }
+        else{
+            holder.date.setVisibility(View.GONE);
+        }
         myMostViewedPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -112,7 +125,7 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
     }
 
     class View_Holder extends RecyclerView.ViewHolder {
-        TextView title;
+        TextView title,date;
         ImageView img, imgEdit, imgDelete;
 
 
@@ -123,6 +136,7 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
             img = itemView.findViewById(R.id.imgToDo);
             imgEdit = itemView.findViewById(R.id.event_edit);
             imgDelete = itemView.findViewById(R.id.event_delete);
+            date=itemView.findViewById(R.id.event_date);
             imgEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

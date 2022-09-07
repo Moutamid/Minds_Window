@@ -17,4 +17,10 @@
     <string name="i_hope_you_and_your_wife_have_a_nice_trip_and_what_we_gonna_dou">I hope you and your wife have a nice trip and what we gonna dou .</string>
     <string name="logout">Logout</string>
     <string name="welcome">Welcome</string>
+    <string name="title_activity_all_data">AllData</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="all_data">All Data</string><!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="done">Done</string>
 </resources>

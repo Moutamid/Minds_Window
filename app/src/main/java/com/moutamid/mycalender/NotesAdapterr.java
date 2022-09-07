@@ -22,12 +22,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 
 //adapter is a class which we used to show list of data for example this adapter is used to show all the compaings in the project
 public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holder> {
+    Boolean state=false;
     private static final String TAG = "NotesAdapter";
     private DatabaseReference Note = FirebaseDatabase.getInstance().getReference(Constants.SimpleNotes);
     private NotesAdapterr.OnitemClickListener mListener;
@@ -50,10 +53,11 @@ public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holde
     List<SimpleNotes> users;
 
 
-    public NotesAdapterr(Context ctx, List<SimpleNotes> users) {
+    public NotesAdapterr(Context ctx, List<SimpleNotes> users,Boolean state) {
         this.layoutInflater = LayoutInflater.from(ctx);
         this.users = users;
         context = ctx;
+        this.state=state;
 
     }
 
@@ -76,7 +80,15 @@ public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holde
         holder.img.setImageResource(R.drawable.ic_circle_svgrepo_com);
         holder.imgEdit.setImageResource(R.drawable.ic_baseline_edit_24);
         holder.imgDelete.setImageResource(R.drawable.ic_baseline_delete_24);
+        if(state){
+            holder.date.setVisibility(View.VISIBLE);
+            SimpleDateFormat dateFormatMonth = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+            holder.date.setText(dateFormatMonth.format(users.get(position).getDate()));
 
+        }
+        else{
+            holder.date.setVisibility(View.GONE);
+        }
 
     }
 
@@ -98,6 +110,7 @@ public class NotesAdapterr extends RecyclerView.Adapter<NotesAdapterr.View_Holde
             title = (TextView) itemView.findViewById(R.id.tvWord);
             img = itemView.findViewById(R.id.imageView3);
             imgEdit = itemView.findViewById(R.id.imgEdit);
+            date=itemView.findViewById(R.id.tvDates);
             imgDelete = itemView.findViewById(R.id.imgDelete);
             imgEdit.setOnClickListener(new View.OnClickListener() {
                 @Override

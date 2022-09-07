@@ -58,6 +58,14 @@ String Date;
                 finish();
             }
         });
+        binding.btnAllData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NoteOptionActivity.this, AllData.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 }

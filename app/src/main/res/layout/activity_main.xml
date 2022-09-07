@@ -12,7 +12,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/text"
         app:layout_constraintBottom_toTopOf="@+id/viewselect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        android:background="@color/colorPrimary"
+        android:background="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewselect" />
@@ -39,7 +39,7 @@
         android:paddingTop="7dp"
         android:text="April 2019"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/text"
         android:textSize="@dimen/_35ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,11 +100,11 @@
             app:compactCalendarBackgroundColor="@color/white"
             app:compactCalendarCurrentDayBackgroundColor="@color/btnBgColors"
             app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
-            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
-            app:compactCalendarCurrentSelectedDayTextColor="#ffff"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/text"
+            app:compactCalendarCurrentSelectedDayTextColor="@color/white"
             app:compactCalendarEventIndicatorStyle="fill_large_indicator"
             app:compactCalendarMultiEventIndicatorColor="@color/linkColor"
-            app:compactCalendarOtherMonthDaysTextColor="#f2f2f2"
+            app:compactCalendarOtherMonthDaysTextColor="@color/white"
 
             app:compactCalendarTargetHeight="300dp"
             app:compactCalendarTextSize="20dp" />
@@ -146,7 +146,7 @@
         android:layout_height="50dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        app:cardBackgroundColor="@color/textColor"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="25dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -157,7 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/ic_baseline_add_24"
-            app:tint="@color/colorPrimary" />
+            app:tint="@color/text" />
     </androidx.cardview.widget.CardView>
 
     <Button
@@ -166,7 +166,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:text="Notes"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintStart_toStartOf="@+id/maincalender"
         app:layout_constraintTop_toBottomOf="@+id/maincalender" />
@@ -176,7 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/text"
         android:text="Diary"
         app:layout_constraintBottom_toBottomOf="@+id/btnNotesevents"
         app:layout_constraintStart_toEndOf="@+id/btnNotesevents"
@@ -189,7 +189,7 @@
         android:layout_height="wrap_content"
         android:text="To Do"
         android:backgroundTint="@color/white"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/text"
         android:layout_marginStart="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnDiaryEvents"
         app:layout_constraintStart_toEndOf="@+id/btnDiaryEvents"

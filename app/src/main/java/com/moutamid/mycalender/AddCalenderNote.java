@@ -54,14 +54,23 @@ public class AddCalenderNote extends AppCompatActivity {
         binding.uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Utils.isEmpty(binding.EtNote)||imageUri==null) {
-                    Utils.toast(getApplicationContext(),"please input title");
-                }
-                else{
-               addToCalender();
-               uploadToFirebase(imageUri);
-               binding.imgWord.setVisibility(View.VISIBLE);
-               binding.cardView3.setVisibility(View.GONE);
+                if (Utils.isEmpty(binding.EtNote)) {
+                    Utils.toast(getApplicationContext(), "please input title");
+                } else {
+                    addToCalender();
+                    binding.imgWord.setVisibility(View.VISIBLE);
+                    binding.cardView3.setVisibility(View.GONE);
+                    if (imageUri != null) {
+                        uploadToFirebase(imageUri);
+                    }
+                    else{
+                        binding.imgWord.setVisibility(View.INVISIBLE);
+                        binding.cardView3.setVisibility(View.VISIBLE);
+                        Toast.makeText(AddCalenderNote.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddCalenderNote.this, MainActivity.class));
+                        finish();
+                    }
+
                 }
 
             }
@@ -137,16 +146,18 @@ public class AddCalenderNote extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cr.getType(mUri));
 
     }
-    public void addToCalender(){
-        ContentResolver cr=AddCalenderNote.this.getContentResolver();
-        ContentValues cv=new ContentValues();
-        cv.put(CalendarContract.Events.TITLE,binding.EtNote.getText().toString());
-        cv.put(CalendarContract.Events.DESCRIPTION,"");
-        cv.put(CalendarContract.Events.DTSTART,Long.parseLong(Date));
-        cv.put(CalendarContract.Events.DTEND,Long.parseLong(Date)+60+60*1000);
-        cv.put(CalendarContract.Events.CALENDAR_ID,1);
+
+    public void addToCalender() {
+        ContentResolver cr = AddCalenderNote.this.getContentResolver();
+        ContentValues cv = new ContentValues();
+        cv.put(CalendarContract.Events.TITLE, binding.EtNote.getText().toString());
+        cv.put(CalendarContract.Events.DESCRIPTION, "");
+        cv.put(CalendarContract.Events.DTSTART, Long.parseLong(Date));
+        cv.put(CalendarContract.Events.DTEND, Long.parseLong(Date) + 60 + 60 * 1000);
+        cv.put(CalendarContract.Events.CALENDAR_ID, 1);
         cv.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance().getTimeZone().getID());
-        cr.insert(CalendarContract.Events.CONTENT_URI,cv);
+        cr.insert(CalendarContract.Events.CONTENT_URI, cv);
+
 
 
     }

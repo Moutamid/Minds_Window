@@ -83,7 +83,7 @@ public class AllNotesActivity extends AppCompatActivity {
                         Log.d("datasss", it + "");
                         binding.recAllNotes.setLayoutManager(
                                 new LinearLayoutManager(getApplicationContext()));
-                        adapter = new NotesAdapterr(AllNotesActivity.this, it);
+                        adapter = new NotesAdapterr(AllNotesActivity.this, it,true);
                         // Connecting Adapter class with the Recycler view*/
                         binding.recAllNotes.setAdapter(adapter);
                         adapter.setOnItemClick(new NotesAdapterr.OnitemClickListener() {

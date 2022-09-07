@@ -35,7 +35,7 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:fontFamily="serif"
                 android:text="I hope you and your wife have a nice trip and what we gonna dou ."
-                android:textColor="#000000"
+                android:textColor="@color/text"
                 android:textSize="@dimen/_18ssp"
                 app:fontFamily="@font/dongle_regular"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -52,7 +52,7 @@
 
             <ImageView
                 android:id="@+id/imgEdit"
-                app:tint="@color/colorPrimary"
+                app:tint="@color/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -63,13 +63,23 @@
             <ImageView
                 android:id="@+id/imgDelete"
                 android:layout_width="wrap_content"
-                app:tint="@color/colorPrimary"
+                app:tint="@color/text"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/imgEdit"
                 app:layout_constraintEnd_toStartOf="@+id/imgEdit"
                 app:layout_constraintTop_toTopOf="@+id/imgEdit"
                 app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+            <TextView
+                android:id="@+id/tvDates"
+                android:textColor="@color/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvWord"
+                app:layout_constraintTop_toBottomOf="@+id/tvWord" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

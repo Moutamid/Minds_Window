@@ -34,7 +34,7 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:fontFamily="serif"
                 android:text="@string/i_hope_you_and_your_wife_have_a_nice_trip_and_what_we_gonna_dou"
-                android:textColor="#000000"
+                android:textColor="@color/text"
                 android:textSize="@dimen/_18ssp"
                 app:fontFamily="@font/dongle_regular"
                 app:layout_constraintStart_toEndOf="@+id/chkBox"
@@ -68,6 +68,17 @@
                 app:layout_constraintTop_toTopOf="@+id/toDoEdit"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+            <TextView
+                android:id="@+id/tvToDoDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/text"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/toDoTitle"
+                app:layout_constraintTop_toBottomOf="@+id/toDoTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
