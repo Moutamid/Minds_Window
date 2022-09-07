@@ -10,12 +10,15 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:tabSelectedTextColor="@color/text"
+        app:tabTextColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabTextColor="@color/text" />
+        />
 
 
     <androidx.viewpager.widget.ViewPager

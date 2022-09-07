@@ -13,19 +13,19 @@ import com.moutamid.mycalender.AllNotesFragment;
 import com.moutamid.mycalender.AllToDoFragment;
 import com.moutamid.mycalender.R;
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     int totalTabs;
     private final Context mContext;
-
+    private String[] tabTitles = new String[]{"Diary", "Notes", "To Do"};
     public SectionsPagerAdapter(Context context, FragmentManager fm, int totalTabs) {
         super(fm);
         mContext = context;
         this.totalTabs = totalTabs;
+    }
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return tabTitles[position];
     }
 
     @Override
@@ -48,8 +48,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         }
 
     }
-
-
     @Override
     public int getCount() {
         // Show 2 total pages.

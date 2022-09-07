@@ -32,10 +32,6 @@ public class AllData extends AppCompatActivity {
         ViewPager viewPager = binding.viewPager;
 
         TabLayout tabs = binding.tabs;
-        tabs.addTab(tabs.newTab().setText("Diary"));
-        tabs.addTab(tabs.newTab().setText("Notes"));
-        tabs.addTab(tabs.newTab().setText("To Do"));
-        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
         tabs.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
         tabs.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
         tabs.setTabTextColors(R.color.newBg, R.color.text);
