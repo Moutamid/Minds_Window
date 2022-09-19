@@ -32,6 +32,25 @@ public class notes {
     String note;
     String imgUrl;
 
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
+
+    String uId;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    String title;
+
     public int getcId() {
         return cId;
     }

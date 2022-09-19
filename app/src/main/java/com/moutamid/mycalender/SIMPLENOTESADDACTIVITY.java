@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.moutamid.mycalender.databinding.ActivityAddNotesBinding;
 
 public class SIMPLENOTESADDACTIVITY extends AppCompatActivity {
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("SimpleNotess");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference(Constants.SimpleNotes);
     String Date;
     ActivityAddNotesBinding binding;
     FirebaseAuth firebaseAuth;
@@ -26,6 +26,7 @@ public class SIMPLENOTESADDACTIVITY extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddNotesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.textView2.setText("Add  Note");
         firebaseAuth=FirebaseAuth.getInstance();
         binding.uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override

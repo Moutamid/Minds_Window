@@ -14,12 +14,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="757579b5-6a7f-4782-bf71-b807c74d1458" name="Default Changelist" comment="9/7/2022">
+      <change afterPath="$PROJECT_DIR$/app/src/main/ic_launcher-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/lp.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/minds.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_to.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AllData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AllData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/ui/main/SectionsPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/ui/main/SectionsPagerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_data.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_data.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddCalenderNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddCalenderNote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddNotes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddNotes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddToDoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AddToDoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AllDiaryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/AllDiaryFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/NoteOptionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/NoteOptionActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/SIMPLENOTESADDACTIVITY.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/SIMPLENOTESADDACTIVITY.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/noteAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/noteAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/notes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moutamid/mycalender/notes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/bg_edittext_light.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/bg_edittext_light.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_calender_note.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_calender_note.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_note_option.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_note_option.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_all_diary.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_all_diary.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,10 +218,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\drawable" />
+      <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\layout" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app" />
       <recent name="C:\Users\BASHIR\Holiday-Event-Calender\app\src\main\res\font" />
-      <recent name="C:\Users\BASHIR\Holiday-Event-Calender" />
     </key>
     <key name="android.template.-698250165">
       <recent name="com.example.mycalender" />
@@ -406,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662574119680</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="9/7/2022">
+      <created>1662585560065</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1662585560065</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">

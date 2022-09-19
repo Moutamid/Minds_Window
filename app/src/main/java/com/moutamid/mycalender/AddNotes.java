@@ -27,13 +27,14 @@ public class AddNotes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddNotesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         Bundle b = getIntent().getExtras();
         firebaseAuth = FirebaseAuth.getInstance();
         // Initialize firebase user
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         Date = b.getString("Date", "null");
-
+        binding.textView2.setText("Add Note");
         binding.uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

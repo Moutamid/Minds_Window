@@ -55,6 +55,7 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
         this.users = users;
         context = ctx;
         this.state=state;
+        Log.d("listItems",users+"");
 
     }
 
@@ -71,7 +72,8 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
 //        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
 //        holder.cardView.setBackgroundColor(randomAndroidColor);
         String urls = null;
-        holder.title.setText(users.get(position).getNote());
+        holder.title.setText(users.get(position).getTitle());
+        holder.description.setText(users.get(position).getNote());
         //here we are defining our data what we have to show it is coming from tha api
         Query myMostViewedPostsQuery = database.orderByChild("date").equalTo(users.get(position).getDate());
         holder.img.setImageResource(R.drawable.monthico);
@@ -125,7 +127,7 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
     }
 
     class View_Holder extends RecyclerView.ViewHolder {
-        TextView title,date;
+        TextView title,date,description;
         ImageView img, imgEdit, imgDelete;
 
 
@@ -135,6 +137,7 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.View_Holder> {
             title = (TextView) itemView.findViewById(R.id.tvToDo);
             img = itemView.findViewById(R.id.imgToDo);
             imgEdit = itemView.findViewById(R.id.event_edit);
+            description=itemView.findViewById(R.id.tvDescription);
             imgDelete = itemView.findViewById(R.id.event_delete);
             date=itemView.findViewById(R.id.event_date);
             imgEdit.setOnClickListener(new View.OnClickListener() {

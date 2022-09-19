@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -30,9 +32,10 @@ import java.util.Calendar;
 
 public class AddCalenderNote extends AppCompatActivity {
     ActivityAddCalenderNoteBinding binding;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("notes");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference(Constants.CalenderNotes);
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
+    FirebaseAuth firebaseAuth;
     String Date;
 
     @Override
@@ -41,6 +44,8 @@ public class AddCalenderNote extends AppCompatActivity {
         binding = ActivityAddCalenderNoteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Bundle b = getIntent().getExtras();
+        firebaseAuth = FirebaseAuth.getInstance();
+
         Date = b.getString("Date", "null");
         binding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +59,7 @@ public class AddCalenderNote extends AppCompatActivity {
         binding.uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Utils.isEmpty(binding.EtNote)) {
+                if (Utils.isEmpty(binding.EtNote)||Utils.isEmpty(binding.EtTitle)) {
                     Utils.toast(getApplicationContext(), "please input title");
                 } else {
                     addToCalender();
@@ -64,11 +69,7 @@ public class AddCalenderNote extends AppCompatActivity {
                         uploadToFirebase(imageUri);
                     }
                     else{
-                        binding.imgWord.setVisibility(View.INVISIBLE);
-                        binding.cardView3.setVisibility(View.VISIBLE);
-                        Toast.makeText(AddCalenderNote.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AddCalenderNote.this, MainActivity.class));
-                        finish();
+                       addtoFire();
                     }
 
                 }
@@ -98,11 +99,15 @@ public class AddCalenderNote extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                         notes data = new notes();
                         data.id = root.push().getKey();
                         data.note = binding.EtNote.getText().toString();
                         data.imgUrl = uri.toString();
+                        data.title=binding.EtTitle.getText().toString();
                         data.date = Long.parseLong(Date);
+
+                        data.uId=firebaseUser.getUid();
                         root.child(data.id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -150,15 +155,43 @@ public class AddCalenderNote extends AppCompatActivity {
     public void addToCalender() {
         ContentResolver cr = AddCalenderNote.this.getContentResolver();
         ContentValues cv = new ContentValues();
-        cv.put(CalendarContract.Events.TITLE, binding.EtNote.getText().toString());
-        cv.put(CalendarContract.Events.DESCRIPTION, "");
+        cv.put(CalendarContract.Events.TITLE, binding.EtTitle.getText().toString());
+        cv.put(CalendarContract.Events.DESCRIPTION, binding.EtNote.getText().toString());
         cv.put(CalendarContract.Events.DTSTART, Long.parseLong(Date));
         cv.put(CalendarContract.Events.DTEND, Long.parseLong(Date) + 60 + 60 * 1000);
         cv.put(CalendarContract.Events.CALENDAR_ID, 1);
         cv.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance().getTimeZone().getID());
         cr.insert(CalendarContract.Events.CONTENT_URI, cv);
 
-
+    }
+    public void addtoFire(){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        notes data = new notes();
+        data.id = root.push().getKey();
+        data.uId=firebaseUser.getUid();
+        data.note = binding.EtNote.getText().toString();
+        data.imgUrl = null;
+        data.title=binding.EtTitle.getText().toString();
+        data.date = Long.parseLong(Date);
+        root.child(data.id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    binding.imgWord.setVisibility(View.INVISIBLE);
+                    binding.cardView3.setVisibility(View.VISIBLE);
+                    Toast.makeText(AddCalenderNote.this, "good", Toast.LENGTH_SHORT).show();
+                } else {
+                    binding.imgWord.setVisibility(View.INVISIBLE);
+                    binding.cardView3.setVisibility(View.VISIBLE);
+                    Toast.makeText(AddCalenderNote.this, "bad", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.imgWord.setVisibility(View.INVISIBLE);
+        binding.cardView3.setVisibility(View.VISIBLE);
+        Toast.makeText(AddCalenderNote.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(AddCalenderNote.this, MainActivity.class));
+        finish();
 
     }
 }
